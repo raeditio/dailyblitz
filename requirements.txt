@@ -1,0 +1,8 @@
+opencv-python
+treys
+pyautogui
+mss
+keyboard
+ultralytics
+roboflow
+python-dotenv
