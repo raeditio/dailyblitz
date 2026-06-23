@@ -16,6 +16,34 @@ card detection) with a poker hand evaluator to make decisions.
 Packaged distributions (installers and prebuilt binaries) are published on the project's GitHub Releases page. Check
 the Releases tab to download the latest release assets instead of building from source.
 
+## Usage & Controls
+
+- Open WSOP Daily Blitz through your browser and set it to full screen.
+- The App UI has a Start button. Pressing it will allow you 5 seconds to switch back to your browser.
+- **Automatic** — Starts scanning and clicking when a WSOP Daily Blitz table is detected on screen
+- `Q` — Terminate the program
+
+Notes:
+- The bot captures the full screen. Run the game in a single, dedicated display to avoid false detections.
+- PyAutoGUI failsafe is enabled: move your mouse to a screen corner to abort if needed.
+
+## Debugging
+
+When run with debug enabled the script writes `debug_cascaded_output.jpg` to the working directory. Open this
+image to verify detected zones, paired cards, and bounding boxes.
+
+If the pipeline misses cards or pairs them incorrectly, try:
+
+- Increasing the card detection confidence threshold
+- Ensuring the game UI is unobstructed and consistent with training data (fonts, scale, card artwork)
+- Re-training or fine-tuning the card model with additional labeled images from your environment
+
+## Troubleshooting
+
+- Incorrect card counts: ensure the entire table is visible and models are loaded without errors
+- Models fail to load: confirm `ultralytics` is installed and model files exist at the paths above
+- Clicking the wrong location: verify monitor offsets (the script uses the screenshot monitor offsets when clicking)
+
 ## Quick Start
 
 1. Install dependencies:
@@ -39,15 +67,6 @@ Then switch to your browser with WSOP Daily Blitz in full-screen mode. The bot w
 clicking winning hands once it detects the game
 Press `Q` or close the app to quit the program.
 
-## Usage & Controls
-
-- **Automatic** — Starts scanning and clicking when a WSOP Daily Blitz table is detected on screen
-- `Q` — Terminate the program
-
-Notes:
-- The bot captures the full screen. Run the game in a single, dedicated display to avoid false detections.
-- PyAutoGUI failsafe is enabled: move your mouse to a screen corner to abort if needed.
-
 ## Implementation Details
 
 - Zone model input size: 640px
@@ -57,23 +76,6 @@ Notes:
 - Default detection thresholds used by the script: zone conf=0.25, card conf=0.10
 
 Model files and thresholds can be tuned in `local.py` by updating the constants near the top of the file.
-
-## Debugging
-
-When run with debug enabled the script writes `debug_cascaded_output.jpg` to the working directory. Open this
-image to verify detected zones, paired cards, and bounding boxes.
-
-If the pipeline misses cards or pairs them incorrectly, try:
-
-- Increasing the card detection confidence threshold
-- Ensuring the game UI is unobstructed and consistent with training data (fonts, scale, card artwork)
-- Re-training or fine-tuning the card model with additional labeled images from your environment
-
-## Troubleshooting
-
-- Incorrect card counts: ensure the entire table is visible and models are loaded without errors
-- Models fail to load: confirm `ultralytics` is installed and model files exist at the paths above
-- Clicking the wrong location: verify monitor offsets (the script uses the screenshot monitor offsets when clicking)
 
 ## Contributing
 

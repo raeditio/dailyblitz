@@ -1,7 +1,0 @@
-opencv-python
-treys
-pyautogui
-mss
-keyboard
-ultralytics
-python-dotenv

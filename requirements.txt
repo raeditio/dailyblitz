@@ -4,7 +4,4 @@ pyautogui
 mss
 keyboard
 ultralytics
-roboflow
 python-dotenv
-inference-sdk
-Pillow
